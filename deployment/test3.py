@@ -67,22 +67,23 @@ if len(selected_features) > 0:
     alg = ['Decision Tree', 'K-Nearest Neighbors', 'Random Forest']
     classifier = st.selectbox('Which algorithm?', alg, key=f'classifier_{iteration_counter}')
 
-    # ... (Existing code for classifier selection and training) ...
-
     if st.button('Train Model', key=f'train_model_{iteration_counter}'):
         start_time = st.session_state.start_time  # Get the start time from session state
         end_time = time.time()  # Record the end time when the "Train Model" button is clicked
         duration = round(end_time - start_time, 2)
 
         if classifier == 'Decision Tree':
+            dtc = DecisionTreeClassifier()  # Create an instance of DecisionTreeClassifier
             dtc.fit(X_train, y_train)
             acc = dtc.score(X_test, y_test)
             tree = export_graphviz(dtc, feature_names=selected_features)
             st.graphviz_chart(tree)
         elif classifier == 'K-Nearest Neighbors':
+            knn = KNeighborsClassifier()  # Create an instance of KNeighborsClassifier
             knn.fit(X_train, y_train)
             acc = knn.score(X_test, y_test)
         elif classifier == 'Random Forest':
+            rfc = RandomForestClassifier()  # Create an instance of RandomForestClassifier
             rfc.fit(X_train, y_train)
             acc = rfc.score(X_test, y_test)
 
