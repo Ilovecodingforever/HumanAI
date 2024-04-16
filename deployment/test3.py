@@ -52,7 +52,7 @@ selected_features = st.multiselect('Select features to train', feature_names, ke
 
 # Prompt to ask the AI assistant for feature suggestions
 if st.button('Ask the AI assistant what features to choose'):
-    suggested_features = random.sample(feature_names, k=min(5, len(feature_names)))
+    suggested_features = random.sample(list(feature_names), k=min(5, len(feature_names)))
     st.info(f"The AI assistant suggests considering the following features: {', '.join(suggested_features)}")
 
 if len(selected_features) > 0:
