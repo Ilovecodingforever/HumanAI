@@ -104,9 +104,10 @@ if len(selected_features) > 0:
             writer = csv.writer(file)
             if not file_exists:
                 writer.writerow(['User ID', 'Start Time', 'End Time', 'Duration (seconds)', 'Dataset', 'Selected Features', 'Algorithm', 'Accuracy', 'Asked for Suggestions'])  # Include 'Dataset' column before 'Algorithm' and 'Asked for Suggestions' column
-            writer.writerows(st.session_state.interactions)  # Write interactions from the session state
+            writer.writerow([user_id, start_time_str, end_time_str, duration, dataset_option, ','.join(selected_features), classifier, acc, asked_for_suggestions])  # Write the current interaction to the CSV file
 
         model_trained = True  # Set the flag to indicate that a model has been trained
+        asked_for_suggestions = False  # Reset the flag after recording the interaction
         del st.session_state.start_time  # Remove the start time from session state
 
 # Display the interaction log as an option
