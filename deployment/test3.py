@@ -51,7 +51,7 @@ model_trained = False  # Flag to track if a model has been trained
 selected_features = st.multiselect('Select features to train', feature_names, key=f'feature_selection_{iteration_counter}')
 
 # Track if the user asked for feature suggestions
-asked_for_suggestions = True
+asked_for_suggestions = False
 
 # Prompt to ask the AI assistant for feature suggestions
 if st.button('Ask the AI assistant what features to choose'):
@@ -107,7 +107,7 @@ if len(selected_features) > 0:
             writer.writerow([user_id, start_time_str, end_time_str, duration, dataset_option, ','.join(selected_features), classifier, acc, asked_for_suggestions])  # Write the current interaction to the CSV file
 
         model_trained = True  # Set the flag to indicate that a model has been trained
-        asked_for_suggestions = True  # Reset the flag after recording the interaction
+        asked_for_suggestions = False  # Reset the flag after recording the interaction
         del st.session_state.start_time  # Remove the start time from session state
 
 # Display the interaction log as an option
