@@ -57,7 +57,7 @@ asked_for_suggestions = True
 if st.button('Ask the AI assistant what features to choose'):
     suggested_features = random.sample(list(feature_names), k=min(5, len(feature_names)))
     st.info(f"The AI assistant suggests considering the following features: {', '.join(suggested_features)}")
-    asked_for_suggestions = False
+    asked_for_suggestions = True
 
 if len(selected_features) > 0:
     if 'start_time' not in st.session_state:
