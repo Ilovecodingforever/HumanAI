@@ -50,6 +50,11 @@ model_trained = False  # Flag to track if a model has been trained
 # Allow users to choose features to train
 selected_features = st.multiselect('Select features to train', feature_names, key=f'feature_selection_{iteration_counter}')
 
+# Prompt to ask the AI assistant for feature suggestions
+if st.button('Ask the AI assistant what features to choose'):
+    suggested_features = random.sample(feature_names, k=min(5, len(feature_names)))
+    st.info(f"The AI assistant suggests considering the following features: {', '.join(suggested_features)}")
+
 if len(selected_features) > 0:
     if 'start_time' not in st.session_state:
         st.session_state.start_time = time.time()  # Record the start time when features are selected
@@ -129,31 +134,33 @@ def response_generator():
         yield word + " "
         time.sleep(0.05)
 
-st.title("AI Assistant")
+# Make the AI assistant optional
+if st.checkbox('Show AI assistant'):
+    st.title("AI assistant")
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-# Accept user input
-prompt = st.chat_input("What is up?")
+    # Accept user input
+    prompt = st.chat_input("What is up?")
 
-if prompt:
-    # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    
-    # Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(prompt)
-    
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        response = st.write_stream(response_generator())
-    
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    if prompt:
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+
+        # Display user message in chat message container
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            response = st.write_stream(response_generator())
+
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": response})
