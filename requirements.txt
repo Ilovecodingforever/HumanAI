@@ -1,0 +1,12 @@
+matplotlib
+notebook
+numpy
+pandas
+pytest
+scikit-learn
+streamlit
+dtreeviz==1.1.3
+graphviz
+seaborn
+plotly
+OpenAI
