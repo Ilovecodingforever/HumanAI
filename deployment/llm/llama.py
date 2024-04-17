@@ -6,8 +6,7 @@ from transformers import LlamaForQuestionAnswering, LlamaTokenizer
 
 
 def load_model(model_dir="/zfsauton2/home/mingzhul/Prompt-Tuning-LLM/llama/llama-2-7b-hf"):
-    model = LlamaForQuestionAnswering.from_pretrained(model_dir,
-                                                           device_map='auto', torch_dtype="auto",)
+    model = LlamaForQuestionAnswering.from_pretrained(model_dir)
 
     return model
 
