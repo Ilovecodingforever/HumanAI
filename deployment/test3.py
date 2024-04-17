@@ -13,7 +13,7 @@ import csv
 import os
 import random
 
-from llm import run_model
+from llm.llama import run_model
 
 
 st.title('Build your own classifiers!')
