@@ -11,7 +11,7 @@ seaborn
 plotly
 OpenAI
 
-
+streamlit
 torch
 transformers
 

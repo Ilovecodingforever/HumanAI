@@ -14,6 +14,7 @@ import os
 import random
 
 from llm.llama import run_model
+import replicate
 
 
 st.title('Build your own classifiers!')
@@ -58,7 +59,7 @@ selected_features = st.multiselect('Select features to train', feature_names, ke
 asked_for_suggestions = st.text_input('Ask the AI assistant what features to choose')
 
 if asked_for_suggestions:
-    assert(os.path.isdir("/zfsauton2/home/mingzhul/Prompt-Tuning-LLM/llama/llama-2-7b-hf"))
+    # assert(os.path.isdir("/zfsauton2/home/mingzhul/Prompt-Tuning-LLM/llama/llama-2-7b-hf"))
     output = run_model(asked_for_suggestions)
     
     # suggested_features = random.sample(list(feature_names), k=min(5, len(feature_names)))

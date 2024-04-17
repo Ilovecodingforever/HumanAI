@@ -50,8 +50,11 @@ if __name__ == '__main__':
     tokenizer = load_tokenizer('meta-llama/Llama-2-7b-chat-hf')
 
 
-    # model = load_model()
-    # model.push_to_hub('ml233/humanai-llama')
+    model = load_model()
+    model.push_to_hub('ml233/humanai-llama')
+    
+    # tokenizer = load_tokenizer()
+    # tokenizer.push_to_hub('ml233/humanai-llama')
 
 
 
