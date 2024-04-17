@@ -54,7 +54,8 @@ model_trained = False  # Flag to track if a model has been trained
 selected_features = st.multiselect('Select features to train', feature_names, key=f'feature_selection_{iteration_counter}')
 
 # Prompt to ask the AI assistant for feature suggestions
-asked_for_suggestions = st.button('Ask the AI assistant what features to choose')
+# asked_for_suggestions = st.button('Ask the AI assistant what features to choose')
+user_id = st.text_input('Ask the AI assistant what features to choose')
 
 if asked_for_suggestions:
     
