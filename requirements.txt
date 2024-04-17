@@ -10,3 +10,8 @@ graphviz
 seaborn
 plotly
 OpenAI
+
+
+torch
+transformers
+
