@@ -13,6 +13,9 @@ import csv
 import os
 import random
 
+from llm import run_model
+
+
 st.title('Build your own classifiers!')
 
 # Dataset selection
@@ -54,8 +57,13 @@ selected_features = st.multiselect('Select features to train', feature_names, ke
 asked_for_suggestions = st.button('Ask the AI assistant what features to choose')
 
 if asked_for_suggestions:
-    suggested_features = random.sample(list(feature_names), k=min(5, len(feature_names)))
-    st.info(f"The AI assistant suggests considering the following features: {', '.join(suggested_features)}")
+    
+    output = run_model(asked_for_suggestions)
+    
+    # suggested_features = random.sample(list(feature_names), k=min(5, len(feature_names)))
+    # st.info(f"The AI assistant suggests considering the following features: {', '.join(suggested_features)}")
+    st.info(output)
+
 
 if len(selected_features) > 0:
     if 'start_time' not in st.session_state:
